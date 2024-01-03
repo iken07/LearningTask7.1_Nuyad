@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Canvas Art Gallery</title>
+  <style>
+    canvas {
+      border: 1px solid black;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Canvas Art Gallery</h1>
+
+  <canvas id="bullseye" width="200" height="200"></canvas>
+  <script>
+    const bullseyeCanvas = document.getElementById('bullseye');
+    const bullseyeCtx = bullseyeCanvas.getContext('2d');
+
+    for (let i = 0; i < 5; i++) {
+      bullseyeCtx.beginPath();
+      bullseyeCtx.arc(100, 100, 50 - i * 10, 0, Math.PI * 2);
+      bullseyeCtx.fillStyle = `hsl(${360 / 5 * i}, 100%, 50%)`;
+      bullseyeCtx.fill();
+      bullseyeCtx.closePath();
+    }
+  </script>
+
+  <canvas id="sunset" width="200" height="200"></canvas>
+  <script>
+    const sunsetCanvas = document.getElementById('sunset');
+    const sunsetCtx = sunsetCanvas.getContext('2d');
+
+    const gradient = sunsetCtx.createLinearGradient(0, 0, 0, 200);
+    gradient.addColorStop(0, 'orange');
+    gradient.addColorStop(0.5, 'yellow');
+    gradient.addColorStop(1, 'red');
+
+    sunsetCtx.fillStyle = gradient;
+    sunsetCtx.fillRect(0, 0, 200, 200);
+
+    sunsetCtx.fillStyle = 'black';
+    sunsetCtx.fillRect(0, 150, 200, 50); // Water
+
+    sunsetCtx.beginPath();
+    sunsetCtx.arc(100, 50, 20, 0, Math.PI * 2);
+    sunsetCtx.fillStyle = 'yellow';
+    sunsetCtx.fill();
+    sunsetCtx.closePath();
+  </script>
+
+<canvas id="envelopeCanvas" width="200" height="200"></canvas>
+  <script>
+    const envelopeCanvas = document.getElementById('envelopeCanvas');
+    const envelopeCtx = envelopeCanvas.getContext('2d');
+
+     envelopeCtx.fillStyle = '#f9f5e1'; // Light yellowish color
+    envelopeCtx.fillRect(20, 20, 160, 100); // x, y, width, height
+
+    // Draw a more detailed flap with shadow and highlight
+    // Flap body
+    envelopeCtx.fillStyle = '#e5e5e5'; // Light grey
+    envelopeCtx.beginPath();
+    envelopeCtx.moveTo(20, 20); // Top-left corner
+    envelopeCtx.lineTo(100, 70); // Flap point
+    envelopeCtx.lineTo(180, 20); // Top-right corner
+    envelopeCtx.closePath();
+    envelopeCtx.fill();
+
+    // Flap shadow
+    envelopeCtx.fillStyle = 'rgba(0, 0, 0, 0.1)'; // Shadow color
+    envelopeCtx.beginPath();
+    envelopeCtx.moveTo(20, 20); // Top-left corner
+    envelopeCtx.lineTo(100, 70); // Flap point
+    envelopeCtx.lineTo(180, 20); // Top-right corner
+    envelopeCtx.closePath();
+    envelopeCtx.fill();
+
+    // Flap highlight
+    envelopeCtx.strokeStyle = '#ffffff'; // White color
+    envelopeCtx.lineWidth = 2;
+    envelopeCtx.beginPath();
+    envelopeCtx.moveTo(20, 20); // Top-left corner
+    envelopeCtx.lineTo(100, 70); // Flap point
+    envelopeCtx.lineTo(180, 20); // Top-right corner
+    envelopeCtx.stroke();
+    envelopeCtx.closePath();
+  </script>
+
+  <canvas id="spiral" width="200" height="200"></canvas>
+  <script>
+    const spiralCanvas = document.getElementById('spiral');
+    const spiralCtx = spiralCanvas.getContext('2d');
+
+    spiralCtx.lineWidth = 2;
+    spiralCtx.strokeStyle = 'rainbow'; // Use a rainbow gradient for the stroke
+
+    spiralCtx.beginPath();
+    for (let i = 0; i < 50; i++) {
+      spiralCtx.arc(100, 100, i * 4, 0, Math.PI * 2);
+    }
+    spiralCtx.stroke();
+    spiralCtx.closePath();
+  </script>
+
+<canvas id="checkerboard" width="200" height="200"></canvas>
+  <script>
+    const checkerboardCanvas = document.getElementById('checkerboard');
+    const checkerboardCtx = checkerboardCanvas.getContext('2d');
+
+    for (let i = 0; i < 10; i++) {
+      for (let j = 0; j < 10; j++) {
+        checkerboardCtx.fillStyle = (i + j) % 2 === 0 ? 'black' : 'white';
+        checkerboardCtx.fillRect(i * 20, j * 20, 20, 20);
+      }
+    }
+  </script>
+
+<canvas id="houseCanvas" width="200" height="200"></canvas>
+  <script>
+ const houseCanvas = document.getElementById('houseCanvas');
+    const houseCtx = houseCanvas.getContext('2d');
+
+    // Draw the house structure
+    houseCtx.fillStyle = '#ffcc99'; // Light brown for walls
+    houseCtx.fillRect(50, 100, 100, 80); // x, y, width, height
+
+    houseCtx.fillStyle = '#8b4513'; // Brown for roof
+    houseCtx.beginPath();
+    houseCtx.moveTo(45, 100);
+    houseCtx.lineTo(155, 100);
+    houseCtx.lineTo(100, 50);
+    houseCtx.closePath();
+    houseCtx.fill();
+
+    houseCtx.fillStyle = '#a52a2a'; // Dark brown for door
+    houseCtx.fillRect(85, 150, 30, 30); // x, y, width, height
+
+    houseCtx.fillStyle = '#ffd700'; // Yellow for doorknob
+    houseCtx.beginPath();
+    houseCtx.arc(100, 165, 2, 0, Math.PI * 2);
+    houseCtx.fill();
+    houseCtx.closePath();
+
+    houseCtx.fillStyle = '#556b2f'; // Green for bushes
+    houseCtx.fillRect(60, 180, 10, 8); // Left bush
+    houseCtx.fillRect(130, 180, 10, 8); // Right bush
+
+    // Draw windows
+    houseCtx.fillStyle = '#add8e6'; // Light blue for window frames
+    houseCtx.fillRect(60, 110, 25, 25); // Left window
+    houseCtx.fillRect(115, 110, 25, 25); 
+  </script>
+
+  <canvas id="flower" width="200" height="200"></canvas>
+  <script>
+    const flowerCanvas = document.getElementById('flower');
+    const flowerCtx = flowerCanvas.getContext('2d');
+
+
+// Sun's disk
+flowerCtx.fillStyle = 'yellow';
+flowerCtx.beginPath();
+flowerCtx.arc(100, 100, 50, 0, Math.PI * 2);
+flowerCtx.fill();
+flowerCtx.closePath();
+
+// Rays
+flowerCtx.fillStyle = 'orange'; // Warmer color for rays
+for (let i = 0; i < 16; i++) { // More rays for a fuller sun
+  flowerCtx.beginPath();
+  flowerCtx.moveTo(100, 100);
+  flowerCtx.lineTo(100 + 50 * Math.cos(i * Math.PI / 8), 100 + 50 * Math.sin(i * Math.PI / 8));
+  flowerCtx.lineTo(100 + 30 * Math.cos((i + 0.5) * Math.PI / 8), 100 + 30 * Math.sin((i + 0.5) * Math.PI / 8));
+  flowerCtx.closePath();
+  flowerCtx.fill();
+}
+  </script>
+ <canvas id="appleCanvas" width="200" height="200"></canvas>
+ <script>
+    // Get the canvas element for the apple
+    const appleCanvas = document.getElementById('appleCanvas');
+    const appleCtx = appleCanvas.getContext('2d');
+
+    // Draw the apple body (circle) with shading
+    const applegradient = appleCtx.createRadialGradient(100, 100, 30, 100, 100, 60);
+    gradient.addColorStop(0, '#ff0000'); // Red
+    gradient.addColorStop(1, '#8b0000'); // Dark red
+    appleCtx.beginPath();
+    appleCtx.arc(100, 100, 50, 0, Math.PI * 2);
+    appleCtx.fillStyle = gradient;
+    appleCtx.fill();
+    appleCtx.closePath();
+
+    // Draw a highlight on the apple body
+    appleCtx.beginPath();
+    appleCtx.arc(90, 80, 15, 0, Math.PI * 2);
+    appleCtx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+    appleCtx.fill();
+    appleCtx.closePath();
+
+    // Draw the apple stem
+    appleCtx.beginPath();
+    appleCtx.moveTo(100, 50);
+    appleCtx.lineTo(100, 30);
+    appleCtx.lineWidth = 4;
+    appleCtx.strokeStyle = '#4d2600'; // Brown color
+    appleCtx.stroke();
+    appleCtx.closePath();
+
+    // Draw a leaf on the stem
+    appleCtx.beginPath();
+    appleCtx.moveTo(100, 35);
+    appleCtx.quadraticCurveTo(85, 20, 70, 35);
+    appleCtx.quadraticCurveTo(65, 45, 80, 50);
+    appleCtx.fillStyle = '#33cc33'; // Green color
+    appleCtx.fill();
+    appleCtx.closePath();
+ </script>
